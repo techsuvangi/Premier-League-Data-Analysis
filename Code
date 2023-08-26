@@ -1,0 +1,32 @@
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+Load the Premier League data
+
+premier_league <- read.csv("/kaggle/input/english-premier-league-results/results.csv")
+Show Data Structure
+
+str(premier_league)
+
+Summary Statistics
+
+summary(premier_league)
+
+Checking for missing values
+
+sum(is.na(premier_league))
+
+AG = premier_league$FTAG
+S = premier_league$Season
+Create a bar chart of the number of away goals scored by away teams
+
+ggplot(premier_league, aes(x =S , y = AG)) +
+      geom_bar(stat = "identity", fill = "purple") +
+      labs(x="Seasons",
+       y="Number of Away goals",
+       title="Number of Away goals scored by each away team")+
+        theme_bw()+
+        theme(plot.title = element_text(size=22)
+        ,axis.text.x= element_text(size=5),
+        axis.text.y= element_text(size=15),
+        axis.title=element_text(size=18))
